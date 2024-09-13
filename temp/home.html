@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+</head>
+<body>
+
+
+    <!--Ko'rinish boshi  -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Kun.uz</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'create_user' %}">Admin  yaratish</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'create_category' %}">Tur yaratish</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'create_news' %}">Yangilik yaratish</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'user_edit' %}" tabindex="-1" >Profile edit</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'password_edit' %}" tabindex="-1" >Password edit</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'Login' %}" tabindex="-1" >Login qilish</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}" tabindex="-1" >Saytdan chiqish</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+    
+
+
+
+    <!--Ko'rinish tugashi  -->
+
+<!-- 
+    <h1>Bosh saxifa</h1>
+     
+
+    <a href="{% url 'create_category' %}"> TUR YARATISH </a> 
+
+    <br><br>
+    
+    <a href="{% url 'create_user' %}">admin  yaratish</a>
+    
+    <br><br>
+    
+    <a href="{% url 'create_news' %}">Yangilik  yaratish</a> -->
+    
+    <style>
+      body{
+          background-color: #96c5db;
+      }
+      img{
+        width: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
+
+
+
+
+    <!-- {% if request.user.is_authenticated %}
+    <br>
+
+    <p style="color: rgb(33, 145, 44); ">{{request.user.username}}, saytga xush kelibsiz ! </p>
+    <p><a href="{% url 'logout' %}"> saytdan chiqish </a></p>
+    {% else %}
+    <p style="color: rgb(219, 82, 82);"> Siz ro'yxatdan o'tmagansiz </p>
+    <p><a href="{% url 'Login' %}">login</a></p>
+    {% endif %} -->
+
+
+    <!-- <center>
+                
+        {% for i in news %}
+        <hr>
+            <h1>
+            <a href="{% url 'detail' i.id %}">
+
+                {{ i.title }}
+              </a>
+            </h1>
+            
+        {% if i.rasm %}
+        <img style="height: 250px; width: 250px;" src="{{ i.rasm.url}}" alt="rasm yo'q">
+        {% endif %}
+
+
+
+        
+                 <h1><br></h1>  
+                          <h4></h4>
+                          <h1></h1>
+                      
+
+                                <button tupe="submit"><a href="{% url 'delete' i.id%}">🗑</a></button> 
+                                <button tupe="submit"><a href="{% url 'tahrirlash' i.id%}">🖋️</a></button>
+                                <button tupe="submit"><a href="{% url 'detail' i.id%}">💬</a></button>  
+                            
+                              
+          
+          
+
+          
+             
+        
+        {% endfor %}  -->
+
+
+
+        
+        
+        
+        <!-- <hr>
+
+        
+          </center> -->
+
+
+          <div  class="container">
+            <center style=" margin-top: 10px; "></center>
+
+
+          {% for i in news %}
+
+          <div class="card mb-2" style="max-width: 1000px;">
+            <div class="row g-0">
+
+              {% if i.rasm %}
+              <div class="col-md-4 p-1">
+                <img src="{{ i.rasm.url }}" class="img-fluid rounded-start" alt="" style="width: 340px; height: 340px;">
+              </div>
+              {% endif %}
+
+              <div class="col-md-8">
+                <div class="card-body">
+                  
+                  <h1 class="card-title"><a href="{% url 'detail' i.id%}">{{ i.title }}</a></h1>
+                  
+                  <p class="card-text"><small class="text-muted">{{i.created}}</small></p>
+                  <p class="card-text"><small class="text-muted">{{i.views}} 👀 </small></p>
+                  <!-- <span>{{i.views}}</small> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+
+                      <!-- <form method="post">
+                          {% csrf_token %}
+
+                              <input type="hidden" name="one" value="{{a.id}}">
+
+                              <button><i class="fa-solid fa-heart">|{{a.likes.count}}</i> ❤️ </button>
+                      </form> -->
+
+
+
+
+         
+
+
+
+          
+
+
+
+            
+                          
+                          <h1></h1>
+                      
+
+                                <button tupe="submit"><a href="{% url 'delete' i.id%}">🗑</a></button> 
+                                <button tupe="submit"><a href="{% url 'tahrirlash' i.id%}">🖋️</a></button>
+                                <button tupe="submit"><a href="{% url 'detail' i.id%}">💬</a></button>  <br><br>
+                                <!-- <a href="{% url 'detail' i.id%}">{{ i.title }}</a> -->
+                                
+                               
+                                
+                               <span> <ul><form method="post">
+                                    {% csrf_token %}
+
+                                      <input type="hidden" name="one" value="{{i.id}}">
+                                      <button><i class="fa-solid fa-heart">{{i.likes.count}} |</i> ❤️ </button>
+                      
+                                </form></ul></span></button>
+              
+                  <hr>              
+                  <br>
+                   
+
+                      
+
+
+
+
+
+
+          {% endfor %} 
+
+         
+        </div>
+
+          
+   
+
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+
+
+
+    <style>
+        body{
+            background-color: #94b6e9;
+        }
+       </style>    
+
+
+
+    <div class="container">
+        <h1>Yangilikga xush kelibsiz</h1>
+
+        <center>
+            <h1>{{one.title}}</h1>
+            <p>{{one.text}}</p>
+
+            <span>{{one.views}}</span>|
+            <span>{{one.author.username}}</span>|
+            <span>{{one.created}}</span>
+            
+
+
+            <hr>
+
+            {% if one.rasm %}
+
+                <img src="{{one.rasm.url}}" alt="rasm kiritilmagan" style="height: 200px; width: 300px;">
+
+            {% endif %}
+        </center>
+        <hr>
+        
+
+
+        <div class="container">
+            <style>
+                body{
+                    background-color: #94b6e9;
+                }
+               </style> 
+    
+
+
+
+        <div class="row align-items-start">
+          <div class="col">
+            <h3>Comments</h3>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-outline-primary">Saqlash</button>
+            </form>
+
+          </div>
+          <div class="col">
+            
+            <h3>comments</h3>
+            {% if one.comments.exists %}
+                {% for j in one.comments.all %}
+                        <h1>{{j.izoh}}</h1>
+                        <span>{{j.user.username}}   |  
+                        {{j.created}}</span>
+                                                            
+                    <a href="{% url 'delete_comment' j.id one.id %}">o'chirish</a>
+                    {% endfor %} 
+                    {% else %}
+                    <h4> Commend mavjud emas! </h4> 
+                    {% endif %}
+
+
+
+
+                                                           
+                                            
+                                            
+                                            
+                                            
+
+
+                                            
+
+
+
+                                        
+
+
+                                       
+                                       
+          </div>
+         
+        </div>
+                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                       
+                                        
+                        
+                        
+                        
+    </div>
+    
+</body>
+</html>
